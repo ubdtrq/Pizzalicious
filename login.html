@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    
+    
+    body {
+        background-image: url("loginimm.jpg");
+    }
+
+    .customGPlusSignIn {
+        background-color: #888;
+        color: #fff;
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .customGPlusSignIn .icon {
+        background: url('https://developers.google.com/identity/images/g-logo.png') transparent 5px 50% no-repeat;
+        display: inline-block;
+        vertical-align: middle;
+        width: 42px;
+        height: 42px;
+    }
+
+    .customGPlusSignIn .buttonText {
+        font-size: 16px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .customGPlusSignIn:hover {
+        background-color: #666;
+    }
+
+    #splashScreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+  </style>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pizza World By RA
+
+  </title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition login-page" onload="showSplashScreen()">
+    <div id="splashScreen">
+        <div class="loader"></div>
+      </div>
+  
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>PIZZA</b>WORLD</a>
+  </div>
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      <form action="../../index3.html" method="post">
+        <div class="input-group mb-3">
+          <input type="email" id="email" name="email"class="form-control" placeholder="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" id="password" name="password"class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+    
+          <div class="col-4">
+            
+            <button type="submit" class="btn btn-primary btn-block" onclick="getdata()">Sign In</button>
+          </div>
+       
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center mb-3">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-primary"><a href="admin.html">Sign in as Admin
+        </a> </a>
+      </div>
+     
+
+      <p class="mb-1">
+        <a href="forgot-password.html">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="signup.html" class="text-center">Register a new membership</a>
+      </p>
+
+<div id="gSignInWrapper">
+  <div id="customBtn" class="customGPlusSignIn">
+    <span class="icon"></span>
+    <span class="buttonText">Sign in with Google</span>
+  </div>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="your-script.js"></script>
+  
+  </div>
+</div>
+
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+function getdata() {
+  var email = $("#email").val();
+  var password = $("#password").val();
+
+  $.ajax({
+    url: 'http://localhost:4000/getdata',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    type: 'GET',
+    contentType: 'application/json',
+    success: function(result) {
+      console.log(result);
+
+      var storedEmail = result.email;
+      var storedPassword = result.password;
+
+      if (email === storedEmail && password === storedPassword) {
+        alert("Correct");
+        window.location.href = "admin.html";
+      } else {
+        alert("Incorrect email or password");
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+    function showSplashScreen() {
+        // Show splash screen
+        document.getElementById("splashScreen").style.display = "flex";
+        
+        // Delay for 4 seconds (4000 milliseconds)
+        setTimeout(hideSplashScreen, 4000);
+      }
+
+      function hideSplashScreen() {
+        // Hide splash screen
+        document.getElementById("splashScreen").style.display = "none";
+      }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add items</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
+
+    <!-- Summernote -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css">
+
+    <!-- SweetAlert -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+    <style>
+        body {
+            background-color:  black;
+
+        }
+
+        .content-wrapper {
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .card-header {
+            background-color: #343a40;
+            color: black;
+        }
+
+        .btn-primary {
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+
+        .btn-primary:hover {
+            background-color: #23272b;
+            border-color: #23272b;
+        }
+
+        /* Additional styles for attractive layout */
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .action-buttons button {
+            margin-bottom: 10px;
+            width: 100px;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .action-buttons button:hover {
+            background-color: #23272b;
+        }
+    </style>
+
+</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
+
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/ionicons.min.css">
+
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body  onload="getdatadfromdatbase() ">
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Pizza<br><small>Delicous</small></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="menu.html" class="nav-link">Menu</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link">Admin</a></li>
+        </ul>
+      </div>
+      </div>
+  </nav>
+<!-- END nav -->
+<body class="hold-transition sidebar-mini" style="background-color: #23272b;">
+    <div class="wrapper">
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 style="text-shadow:#23272b ;">Add New Items</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-10 offset-1" id="div1">
+                           <!-- ... -->
+<div class="card card-primary">
+    <div class="card-header" style="background-color: #23272b;">
+        <h3 class="card-title">Add Items</h3>
+    </div>
+    <form>
+        <div class="card-body">
+            <div>
+                <div class="form-group">
+                    <label for="cmp_name">Blog Title</label>
+                    <input type="text" class="form-control" id="b_title" placeholder="Enter Text">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <textarea rows="4" class="form-control" id="b_description" placeholder="Enter Text"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button type="button" onclick="add_blog();" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+<!-- ... -->
+
+                        </div>
+                        <div id="titleid" class="container-fluid" style="text-align: center;"></div>
+                        <div id="blogid" class="container-fluid"></div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="main-footer"></footer>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button onclick="updateBlog()"><i class="fas fa-edit"></i> Update</button>
+        <button onclick="deleteBlog()"><i class="fas fa-trash"></i>  Delete</button>
+        <button onclick="goBack()"><i class="fas fa-arrow-left"></i><a href="admin.html"> Back</a></button>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <!-- jquery-validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
+    <!-- Summernote -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+    <!-- SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#b_description').summernote();
+
+            setTimeout(function () {
+                $('#loadingmodal').modal('hide');
+            }, 500);
+        });
+
+        function add_blog() {
+            var title = $("#b_title").val();
+            var desc = $('#b_description').summernote('code');
+
+            var data = { blog_title: title, blog_description: desc };
+            let post = JSON.stringify(data);
+
+            $.ajax({
+                url: 'http://localhost:4000/insertblog',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                type: 'POST',
+                contentType: 'application/json',
+                data: post,
+                success: function () {
+                    alert("Data Inserted");
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        }
+
+        function get_blog() {
+            alert("Hello blog");
+            $.ajax({
+                url: 'http://localhost:4000/getData',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                type: "GET",
+                success: function (result) {
+                    alert(result[0].id);
+                    alert(result[0].blog_description);
+                    $("#titleid").html(result[0].blog_title);
+                    $("#blogid").html(result[0].blog_description);
+                }
+            });
+        }
+
+        function updateBlog() {
+            // Functionality for updating the blog goes here
+        }
+
+        function deleteBlog() {
+            // Functionality for deleting the blog goes here
+        }
+
+        function goBack() {
+            // Functionality for going back goes here
+        }
+    </script>
+</body>
+
+</html>

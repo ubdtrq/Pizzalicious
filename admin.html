@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stylish Page</title>
+  <style>
+    /* Your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-right: 10px;
+      background-color: #555;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .button:hover {
+      background-color: #777;
+    }
+
+    .orders {
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+
+    .orders-button {
+      display: block;
+      margin-top: 20px;
+      background-color: #555;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .orders-button:hover {
+      background-color: #777;
+    }
+
+    #pizzaTable {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    #pizzaTable th,
+    #pizzaTable td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    #pizzaTable th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    #tableBody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #tableBody tr:hover {
+      background-color: #ddd;
+    }
+
+    #splashScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body onload="showSplashScreen()">
+  <header>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body  onload="getdatadfromdatbase() ">
+  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Pizza<br><small>Delicous</small></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item active"><a href="menu.html" class="nav-link">Menu</a></li>
+	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+			  <li class="nav-item"><a href="login.html" class="nav-link">Admin</a></li>
+	        </ul>
+	      </div>
+		  </div>
+	  </nav>
+    <!-- END nav -->
+
+
+    <div id="splashScreen">
+      <div class="loader"></div>
+    </div>
+
+    <h1>Pizza Orders</h1>
+
+    <a href="Add.html" class="button">ADD ITEM</a>
+    <a href="update.html" class="button" >UPDATE ITEM</a>
+    <a href="deletedata.html" class="button">DELETE ITEM</a>
+    <a href="#" class="orders-button" onclick="getdata()">ORDERS</a>
+
+    <div class="container">
+      <table id="pizzaTable">
+        <thead>
+          <tr>
+            <th>Flavour</th>
+            <th>Name</th>
+            <th>Contact</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Table rows will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+  </header>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    function showSplashScreen() {
+      // Show splash screen
+      document.getElementById("splashScreen").style.display = "flex";
+
+      // Delay for 4 seconds (4000 milliseconds)
+      setTimeout(hideSplashScreen, 4000);
+    }
+
+    function hideSplashScreen() {
+      // Hide splash screen
+      document.getElementById("splashScreen").style.display = "none";
+    }
+
+    // Retrieve data from the server using AJAX
+    function getdata() {
+  
+      $.ajax({
+        url: "http://localhost:4000/getd",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        type: "GET",
+        contentType: "application/json",
+        success: function (result) {
+          console.log(result);
+          alert(result[0].name);
+          const tableBody = document.getElementById("tableBody");
+          tableBody.innerHTML = ""; // Clear existing rows
+
+          result.forEach(function (item) {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${item.flavour}</td>
+              <td>${item.name}</td>
+              <td>${item.contact}</td>
+            `;
+            tableBody.appendChild(row);
+          });
+        },
+        error: function () {
+          alert("Error retrieving data");
+        },
+      });
+    }
+  </script>
+</body>
+</html>

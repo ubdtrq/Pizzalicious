@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-image: url("loginimm.jpg");
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        border-radius: 4px;
+        box-shadow: none;
+      }
+
+      .btn-primary {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        background-color: #777777; /* Change the button color to grey */
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: #555555; /* Change the button hover color to a darker shade of grey */
+      }
+        
+    /* Your CSS styles here */
+    #splashScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    </style>
+    <title>Sign Up</title>
+  </head>
+  <body onload="showSplashScreen()">
+     <div id="splashScreen">
+      <div class="loader"></div>
+    </div>
+    <div class="container">
+      <h1>Sign Up</h1>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="assword">Confirm Password</label>
+        <input type="assword" id="assword" name="assword" class="form-control" />
+      </div>
+      <input name="insert" onclick="submit();" value="Signup" class="btn btn-primary" />
+      
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+      function submit() {
+        alert("Sub Fun Called");
+
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+
+        alert(name);
+        alert(email);
+        alert(password);
+
+        var data = { name: name, email: email, password: password };
+
+        let post = JSON.stringify(data);
+
+        console.log(post);
+
+        $.ajax({
+          url: "http://localhost:4000/insert",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          type: "POST",
+          contentType: "application/json",
+          data: post,
+          success: function () {
+            alert("Data Inserted");
+          },
+          error: function () {
+            alert("error");
+          },
+        });
+      }
+
+      function getdata() {
+        var Email = $("#email").val();
+        var Password = $("#password").val();
+        var email, password;
+        alert("hello");
+        $.ajax({
+          url: "http://localhost:4000/getdata",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          type: "GET",
+          contentType: "application/json",
+          success: function (result) {
+            console.log(result);
+            result.forEach(function (obj) {
+              email = obj.email;
+              password = obj.password;
+              if (email == Email && password == Password) {
+                alert("Correct");
+              }
+            });
+          },
+          error: function () {
+            alert("error");
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
